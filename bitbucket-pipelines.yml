@@ -1,0 +1,10 @@
+image: atlassian/default-image:latest
+
+pipelines:
+  default:
+    - step:
+        name: Deploy Service Three to AWS EC2
+        script:
+          - 'echo Deploying Service Three to EC2 server 13.206.108.239...'
+          - 'ssh -o StrictHostKeyChecking=no ubuntu@13.206.108.239 "cd /home/ubuntu/aws-learning-service-three && git pull origin main && ./venv/bin/pip install -r requirements.txt && sudo systemctl restart service3"'
+          - 'echo Deployment Successful! Service Three is live on AWS ALB.'
